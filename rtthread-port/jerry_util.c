@@ -251,7 +251,7 @@ void js_value_dump(jerry_value_t value)
 
 int js_read_file(const char* filename, char **script)
 {
-    FILE *fp;
+    int fd;
     int length = 0;
     struct stat statbuf;
 
@@ -266,8 +266,8 @@ int js_read_file(const char* filename, char **script)
     if(!(*script)) return 0;
     (*script)[length] = '\0';
 
-    fp = fopen(filename, "rb");
-    if(!fp)
+    fd = open(filename, O_RDONLY, 0);
+    if(fd < 0)
     {
         rt_free(*script);
         *script = RT_NULL;
@@ -275,14 +275,14 @@ int js_read_file(const char* filename, char **script)
         return 0;
     }
 
-    if(fread(*script, length, 1, fp) != 1)
+    if(read(fd, *script, length) != length)
     {
         length = 0;
         rt_free(*script);
         *script = RT_NULL;
         printf("read %s failed!\n", filename);
     }
-    fclose(fp);
+    close(fd);
 
     return length;
 }

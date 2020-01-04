@@ -2,7 +2,6 @@
 #include <stdlib.h>
 
 #include <rtthread.h>
-#include <finsh.h>
 
 #include <jerryscript.h>
 #include <jerry_util.h>
@@ -138,7 +137,7 @@ static void jerry_thread_entry(void* parameter)
                                 js_call_callback(jmc->callback, jmc->args, jmc->size);
                             }
                         }
-                        rt_thread_delay(rt_tick_from_millisecond(10));
+                        rt_thread_mdelay(10);
                     }
                 }
 

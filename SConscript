@@ -2,6 +2,7 @@
 
 import os
 from building import *
+Import('Env')
 
 # get current directory
 cwd = GetCurrentDir()
@@ -59,10 +60,9 @@ CPPPATH += [jerry_ext_dir + '/include']
 CPPPATH += [jerry_ext_dir + '/module']
 
 LOCAL_CCFLAGS = ''
-import rtconfig
-if rtconfig.CROSS_TOOL == 'keil':
+if Env['CC'] == 'keil':
     LOCAL_CCFLAGS += ' --gnu'
-elif rtconfig.CROSS_TOOL == 'gcc':
+elif Env['CC'].find('gcc') != -1:
     LOCAL_CCFLAGS += ' -std=c11'
 
 CPPDEFINES = ['JERRY_JS_PARSER', 'JERRY_ENABLE_EXTERNAL_CONTEXT']

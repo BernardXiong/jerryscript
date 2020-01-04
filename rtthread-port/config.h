@@ -16,7 +16,7 @@
 #ifndef CONFIG_H
 #define CONFIG_H
 
-#include "rtconfig.h"
+#include <rtthread.h>
 
 /**
  * Group of builtin-related features that can be disabled together.

@@ -179,7 +179,7 @@ struct jerry_context_t *jerry_port_get_current_context(void)
 
 void jerry_port_sleep(uint32_t sleep_time)
 {
-    rt_thread_delay(rt_tick_from_millisecond(sleep_time));
+    rt_thread_mdelay(sleep_time);
 }
 
 #ifdef JMEM_STATS

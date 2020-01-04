@@ -3,8 +3,27 @@
 from building import *
 
 cwd = GetCurrentDir()
-src = Glob('*.c')
+src = Split('''
+jerry_buffer.c
+jerry_callbacks.c
+jerry_console.c
+jerry_event.c
+jerry_main.c
+jerry_message.c
+jerry_module.c
+jerry_os.c
+jerry_request_init.c
+jerry_utf8.c
+jerry_util.c
+jerry_wlan.c
+port.c
+''')
 CPPPATH = [cwd]
+
+net_src = Split('''
+jerry_net.c
+jerry_mqtt.c
+''')
 
 group = DefineGroup('JerryScriptPort', src, depend = ['PKG_USING_JERRYSCRIPT'], CPPPATH = CPPPATH)
 

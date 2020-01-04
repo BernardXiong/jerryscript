@@ -1,4 +1,4 @@
-#include <rtdevice.h>
+#include <rtthread.h>
 #include "jerry_net.h"
 /* manage the pipe of socket */
 

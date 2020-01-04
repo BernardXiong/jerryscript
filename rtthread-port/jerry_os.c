@@ -9,7 +9,7 @@ DECLARE_HANDLER(ps)
     printf("list thread\n");
 #else
     extern long list_thread(void);
-    list_thread();
+    // list_thread();
 #endif
 
     return jerry_create_undefined();

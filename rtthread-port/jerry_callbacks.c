@@ -1,4 +1,5 @@
-
+#include <string.h>
+#include <stdio.h>
 
 #include <jerry_callbacks.h>
 

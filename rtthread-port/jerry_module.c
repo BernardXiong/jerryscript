@@ -3,7 +3,6 @@
 #include <stdlib.h>
 
 #include <rtthread.h>
-#include <finsh.h>
 
 #include "jerry_util.h"
 #include "jerry_module.h"
@@ -263,10 +262,10 @@ static bool load_module_from_builtin(const jerry_value_t module_name,
                                      jerry_value_t *result)
 {
     bool ret = false;
-    module_init_func_t module_init;
 
     char *module = js_value_to_string(module_name);
 #ifdef HOST_BUILD
+	module_init_func_t module_init;
     {
         extern jerry_value_t js_module_rtthread_init(void);
 
@@ -280,6 +279,7 @@ static bool load_module_from_builtin(const jerry_value_t module_name,
 #elif defined(RT_USING_FINSH)
     int len = strlen(module) + 7;
     char module_fullname[len];
+	module_init_func_t module_init;
 
     snprintf(module_fullname, len, "__jsm_%s", module);
     module_fullname[len - 1] = '\0';
